@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36401.2 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaraokeManagement", "KaraokeManagement\KaraokeManagement.csproj", "{CD881B67-3070-4830-BB8A-1F3B000BB8AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD881B67-3070-4830-BB8A-1F3B000BB8AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD881B67-3070-4830-BB8A-1F3B000BB8AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD881B67-3070-4830-BB8A-1F3B000BB8AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD881B67-3070-4830-BB8A-1F3B000BB8AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2ED8055B-D397-492C-9071-35BBA98D9C1B}
+	EndGlobalSection
+EndGlobal
