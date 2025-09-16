@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace QLquannet
+namespace KaraokeManagement
 {
     public partial class ucProduct : UserControl
     {

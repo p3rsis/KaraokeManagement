@@ -1,4 +1,4 @@
-﻿namespace QLquannet
+﻿namespace KaraokeManagement
 {
     partial class frmIntakeFood
     {

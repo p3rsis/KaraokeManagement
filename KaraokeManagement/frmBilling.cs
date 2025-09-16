@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Forms;
 
-namespace QLquannet
+namespace KaraokeManagement
 {
     public partial class frmBilling : Form
     {

@@ -1,6 +1,6 @@
 ﻿using DAL;
 using DTO;
-using QLquannet.Model;
+using KaraokeManagement.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +8,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 
-namespace QLquannet
+namespace KaraokeManagement
 {
     public partial class frmFood : Form
     {
@@ -34,12 +34,12 @@ namespace QLquannet
             cboZone.ValueMember = "ZoneID";
             cboZone.SelectedIndex = -1;
         }
-        private void LoadcboRoom(byte zoneid)
+        private void LoadcboCom(byte zoneid)
         {
-            cboRoom.DataSource = RoomDAL.Instance.GetRooms(zoneid);
-            cboRoom.DisplayMember = "RoomName";
-            cboRoom.ValueMember = "RoomID";
-            cboRoom.SelectedIndex = -1;
+            cboCom.DataSource = ComputerDAL.Instance.GetComs(zoneid);
+            cboCom.DisplayMember = "ComputerName";
+            cboCom.ValueMember = "ComputerID";
+            cboCom.SelectedIndex = -1;
         }
         private void LoadCategories()
         {
@@ -126,9 +126,9 @@ namespace QLquannet
             txtSearchFood.SelectAll();
         }
 
-        private void LoadFoodDetail(byte roomid)
+        private void LoadFoodDetail(byte comid)
         {
-            List<Food> foods = FoodDAL.Instance.GetFoodDetail(roomid);
+            List<Food> foods = FoodDAL.Instance.GetFoodDetail(comid);
 
             dgvFoodList.Rows.Clear();
 
@@ -195,18 +195,18 @@ namespace QLquannet
             if (cboZone.SelectedIndex != -1)
             {
                 DataRowView selectedRow = (DataRowView)cboZone.SelectedItem;
-                LoadcboRoom((byte)selectedRow["ZoneID"]);
+                LoadcboCom((byte)selectedRow["ZoneID"]);
             }
         }
 
 
-        private void cboRoom_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboCom_SelectedIndexChanged(object sender, EventArgs e)
         {
             dgvFoodList.Rows.Clear();
-            if (cboRoom.SelectedIndex != -1)
+            if (cboCom.SelectedIndex != -1)
             {
-                DataRowView selectedRow = (DataRowView)cboRoom.SelectedItem;
-                LoadFoodDetail((byte)selectedRow["RoomID"]);
+                DataRowView selectedRow = (DataRowView)cboCom.SelectedItem;
+                LoadFoodDetail((byte)selectedRow["ComputerID"]);
             }
         }
         private void btnReset_Click(object sender, EventArgs e)
@@ -218,27 +218,27 @@ namespace QLquannet
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if (cboRoom.SelectedIndex == -1)
+            if (cboCom.SelectedIndex == -1)
             {
                 MessageBox.Show("Bạn chưa chọn phòng!");
                 return;
             }
-            byte roomID;
-            DataRowView selectedRow = (DataRowView)cboRoom.SelectedItem;
+            byte computerID;
+            DataRowView selectedRow = (DataRowView)cboCom.SelectedItem;
             try
             {
-                roomID = (byte)selectedRow["RoomID"];
+                computerID = (byte)selectedRow["ComputerID"];
             }
-            catch{ return; }
+            catch { return; }
 
             int billingID;
             try
             {
-                billingID = FoodDAL.Instance.GetUncheckBillingID(roomID);
+                billingID = FoodDAL.Instance.GetUncheckBillingID(computerID);
                 if (billingID == -1)
                 {
-                    MessageBox.Show("Phòng chưa được bật!");
-                    return; 
+                    MessageBox.Show("Phòng chưa được mở!");
+                    return;
                 }
             }
             catch { return; }
@@ -252,11 +252,10 @@ namespace QLquannet
                 }
                 else
                 {
-                FoodDAL.Instance.SaveFoodDetails(billingID, foodID, count);
+                    FoodDAL.Instance.SaveFoodDetails(billingID, foodID, count);
                 }
             }
             MessageBox.Show("Dữ liệu đã được lưu thành công!");
-
         }
 
     }

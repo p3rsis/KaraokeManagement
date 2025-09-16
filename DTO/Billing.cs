@@ -3,7 +3,7 @@ using System.Data;
 
 namespace DTO
 {
- 
+
     public class Billing
     {
         private DateTime bDate;

@@ -7,8 +7,8 @@ namespace DTO
     {
         public UsageSession(DataRow row)
         {
-            this.RoomName = row["roomname"].ToString();
-            this.RoomStatus = (byte)row["roomstatus"];
+            this.ComName = row["computername"].ToString();
+            this.ComStatus = (byte)row["computerstatus"];
             var thoigianTemp = row["starttime"];
             if (thoigianTemp.ToString() != "")
             {
@@ -22,13 +22,13 @@ namespace DTO
         }
 
         private int billId;
-        private string roomName;
-        private byte roomStatus;
+        private string comName;
+        private byte comStatus;
         private DateTime? sTime;
 
-        public string RoomName { get => roomName; set => roomName = value; }
+        public string ComName { get => comName; set => comName = value; }
         public int BillId { get => billId; set => billId = value; }
-        public byte RoomStatus { get => roomStatus; set => roomStatus = value; }
+        public byte ComStatus { get => comStatus; set => comStatus = value; }
         public DateTime? STime { get => sTime; set => sTime = value; }
     }
 }

@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 
-namespace QLquannet
+namespace KaraokeManagement
 {
     public partial class frmRoom : Form
     {
@@ -47,7 +47,7 @@ namespace QLquannet
 
         private void btn_Click(object sender, EventArgs e)
         {
-            cid = ((sender as Button).Tag as Zone).RoomId;
+            cid = ((sender as Button).Tag as Zone).ComId;
 
             ChangeColorComBtn((sender as Button), null);
             LoadUsageSession(cid);
@@ -58,21 +58,21 @@ namespace QLquannet
         {
             if (txtTT.Text == "Online")
             {
-                MessageBox.Show("Máy đang online!");
+                MessageBox.Show("Phòng đã có khách dùng!");
             }
             else if (txtTT.Text == "Error")
             {
-                MessageBox.Show("Máy đang bảo trì!");
+                MessageBox.Show("Phòng đang bảo trì!");
             }
             else if (gbMay.Text == "")
             {
-                MessageBox.Show("Chưa chọn máy!");
+                MessageBox.Show("Chưa chọn phòng!");
             }
             else
             {
                 UsageSessionDAL.Instance.StartSession(cid);
                 LoadUsageSession(cid);
-                LoadZone(RoomZone.zoneId);
+                LoadZone(ComputerZone.zoneId);
             }
         }
         private void btnThanhtoan_Click(object sender, EventArgs e)
@@ -80,11 +80,11 @@ namespace QLquannet
             int billid = UsageSessionDAL.Instance.GetUnCheckOutSession(cid);
             if (txtTT.Text == "Offline" || txtTT.Text == "Error")
             {
-                MessageBox.Show(gbMay.Text + " đang offline!");
+                MessageBox.Show(gbMay.Text + " chưa được mở!");
             }
             else if (gbMay.Text == "")
             {
-                MessageBox.Show("Chưa chọn máy!");
+                MessageBox.Show("Chưa chọn phòng!");
             }
             else
             {
@@ -92,7 +92,7 @@ namespace QLquannet
                 {
                     UsageSessionDAL.Instance.EndSesion(billid);
                     BillingDAL.Instance.CheckOut(billid, Employee.emId);
-                    LoadZone(RoomZone.zoneId);
+                    LoadZone(ComputerZone.zoneId);
                     MessageBox.Show("Thanh toán thành công cho " + gbMay.Text);
                     LoadUsageSession(cid);
                     LoadFoodDetail(cid);
@@ -107,8 +107,8 @@ namespace QLquannet
         void LoadZone(byte zoneid)
         {
             flpCom.Controls.Clear();
-            RoomZone.zoneId = zoneid;
-            List<Zone> listCom = ZoneDAL.Instance.loadRoom(zoneid);
+            ComputerZone.zoneId = zoneid;
+            List<Zone> listCom = ZoneDAL.Instance.loadCom(zoneid);
             int online = 0;
             int offline = 0;
             int error = 0;
@@ -116,8 +116,8 @@ namespace QLquannet
             {
                 Button btn = new Button()
                 {
-                    Width = ZoneDAL.RoomWidth,
-                    Height = ZoneDAL.RoomHeight,
+                    Width = ZoneDAL.ComWidth,
+                    Height = ZoneDAL.ComHeight,
                 };
 
                 btn.Click += btn_Click;
@@ -126,25 +126,25 @@ namespace QLquannet
 
                 btn.Tag = com;
 
-                switch (com.RoomStatus)
+                switch (com.ComStatus)
                 {
                     case 0:
                         btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(200, 200, 100);
                         btn.BackColor = Color.LightGray;
-                        btn.Text = com.RoomName + Environment.NewLine + "Offline";
+                        btn.Text = com.ComName + Environment.NewLine + "Offline";
                         offline++;
                         break;
 
                     case 1:
                         btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(100, 228, 178);
                         btn.BackColor = Color.Aqua;
-                        btn.Text = com.RoomName + Environment.NewLine + "Online";
+                        btn.Text = com.ComName + Environment.NewLine + "Online";
                         online++;
                         break;
                     default:
                         btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(228, 135, 50);
                         btn.BackColor = Color.OrangeRed;
-                        btn.Text = com.RoomName + Environment.NewLine + "Error";
+                        btn.Text = com.ComName + Environment.NewLine + "Error";
                         error++;
                         break;
                 }
@@ -155,13 +155,7 @@ namespace QLquannet
                 txtAvailable.Text = offline.ToString();
                 txtUsing.Text = online.ToString();
                 txtError.Text = error.ToString();
-                txtCPU.Text = com.CpuModel;
-                txtGPU.Text = com.Gpumodel;
-                txtHDD.Text = com.HddModel;
-                txtSSD.Text = com.SsdModel;
-                txtMouse.Text = com.MouseModel;
-                txtKey.Text = com.KeyboardModel;
-                txtMonitor.Text = com.MonitorModel;
+                
 
             }
         }
@@ -169,7 +163,7 @@ namespace QLquannet
         {
             UsageSession us = UsageSessionDAL.Instance.GetUsageSessionDetails(comid);
 
-            gbMay.Text = us.RoomName;
+            gbMay.Text = us.ComName;
             if (us.STime.HasValue)
             {
                 tpStime.Value = us.STime.Value;
@@ -187,11 +181,11 @@ namespace QLquannet
             decimal tamTinh = (hours + (minutes / 60.0m)) * decimal.Parse(txtPrice.Text);
             txtTamtinh.Text = Math.Round(tamTinh, 2).ToString();
 
-            if (us.RoomStatus == 0)
+            if (us.ComStatus == 0)
             {
                 txtTT.Text = "Offline";
             }
-            else if (us.RoomStatus == 1)
+            else if (us.ComStatus == 1)
             {
                 txtTT.Text = "Online";
             }

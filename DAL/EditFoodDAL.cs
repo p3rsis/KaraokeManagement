@@ -8,7 +8,7 @@ namespace DAL
         private static EditFoodDAL instance;
 
         public static EditFoodDAL Instance
-        { 
+        {
             get
             {
                 if (instance == null)
@@ -19,7 +19,7 @@ namespace DAL
             }
             private set { EditFoodDAL.instance = value; }
         }
-        public EditFoodDAL () { }
+        public EditFoodDAL() { }
         public DataTable GetAllFood()
         {
             string query = "SELECT foodid, foodname, price, intakeprice, inventory, categoryid, image FROM Food";

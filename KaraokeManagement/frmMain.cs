@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace QLquannet
+namespace KaraokeManagement
 {
     public partial class frmMain : Form
     {
@@ -104,5 +104,10 @@ namespace QLquannet
             }
         }
 
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            LoadForm(new frmDashboard());
+            ChangeColorMainBtn(btnDashboard, null);
+        }
     }
 }

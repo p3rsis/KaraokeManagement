@@ -25,7 +25,7 @@ namespace DTO
             this.categoryID = (int)row["categoryid"];
             this.Count = row["count"] is DBNull ? 0 : Convert.ToInt32(row["count"]);
             this.Price = (decimal)row["price"];
-            this.Cost =row["cost"] is DBNull ? 0 : Convert.ToDecimal(row["cost"]);
+            this.Cost = row["cost"] is DBNull ? 0 : Convert.ToDecimal(row["cost"]);
             this.Image = Image.FromStream(new MemoryStream((byte[])row["image"]));
         }
         public int FoodID { get => foodID; set => foodID = value; }
@@ -38,7 +38,7 @@ namespace DTO
         public int Count { get => count; set => count = value; }
         public decimal Cost { get => cost; set => cost = value; }
     }
-     
+
     public class Category
     {
         private int categoryID;

@@ -1,4 +1,4 @@
-﻿namespace QLquannet
+﻿namespace KaraokeManagement
 {
     partial class frmMaintainance
     {
@@ -30,7 +30,7 @@
         {
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.flpRoom = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpCom = new System.Windows.Forms.FlowLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.txtError = new System.Windows.Forms.TextBox();
@@ -86,14 +86,14 @@
             this.textBox1.Size = new System.Drawing.Size(19, 20);
             this.textBox1.TabIndex = 61;
             // 
-            // flpRoom
+            // flpCom
             // 
-            this.flpRoom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flpRoom.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.flpRoom.Location = new System.Drawing.Point(3, 49);
-            this.flpRoom.Name = "flpRoom";
-            this.flpRoom.Size = new System.Drawing.Size(627, 532);
-            this.flpRoom.TabIndex = 14;
+            this.flpCom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.flpCom.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.flpCom.Location = new System.Drawing.Point(3, 49);
+            this.flpCom.Name = "flpCom";
+            this.flpCom.Size = new System.Drawing.Size(627, 532);
+            this.flpCom.TabIndex = 14;
             // 
             // panel3
             // 
@@ -128,7 +128,7 @@
             this.txtError.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtError.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtError.ForeColor = System.Drawing.SystemColors.Info;
-            this.txtError.Location = new System.Drawing.Point(466, 4);
+            this.txtError.Location = new System.Drawing.Point(472, 3);
             this.txtError.Name = "txtError";
             this.txtError.Size = new System.Drawing.Size(19, 20);
             this.txtError.TabIndex = 7;
@@ -139,7 +139,7 @@
             this.txtUsing.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUsing.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsing.ForeColor = System.Drawing.SystemColors.Info;
-            this.txtUsing.Location = new System.Drawing.Point(318, 3);
+            this.txtUsing.Location = new System.Drawing.Point(311, 4);
             this.txtUsing.Name = "txtUsing";
             this.txtUsing.Size = new System.Drawing.Size(19, 20);
             this.txtUsing.TabIndex = 6;
@@ -150,7 +150,7 @@
             this.txtAvailable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtAvailable.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAvailable.ForeColor = System.Drawing.SystemColors.Info;
-            this.txtAvailable.Location = new System.Drawing.Point(130, 3);
+            this.txtAvailable.Location = new System.Drawing.Point(113, 4);
             this.txtAvailable.Name = "txtAvailable";
             this.txtAvailable.Size = new System.Drawing.Size(19, 20);
             this.txtAvailable.TabIndex = 5;
@@ -162,20 +162,20 @@
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(377, 3);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 19);
+            this.label3.Size = new System.Drawing.Size(99, 19);
             this.label3.TabIndex = 4;
-            this.label3.Text = "máy báo lỗi:";
+            this.label3.Text = "Phòng bảo trì:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(186, 3);
+            this.label2.Location = new System.Drawing.Point(186, 4);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 19);
+            this.label2.Size = new System.Drawing.Size(130, 19);
             this.label2.TabIndex = 3;
-            this.label2.Text = "máy đang sử dụng:";
+            this.label2.Text = " Phòng đang dùng:";
             // 
             // label1
             // 
@@ -184,9 +184,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(26, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 19);
+            this.label1.Size = new System.Drawing.Size(91, 19);
             this.label1.TabIndex = 2;
-            this.label1.Text = "máy còn trống:";
+            this.label1.Text = "Phòng trống:";
             // 
             // txtNhanvien
             // 
@@ -255,9 +255,9 @@
             this.label4.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.label4.Location = new System.Drawing.Point(13, 36);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(105, 18);
+            this.label4.Size = new System.Drawing.Size(118, 18);
             this.label4.TabIndex = 57;
-            this.label4.Text = "Trạng thái máy";
+            this.label4.Text = "Trạng thái phòng";
             // 
             // gbMay
             // 
@@ -293,7 +293,7 @@
             this.btnBaoloi.Name = "btnBaoloi";
             this.btnBaoloi.Size = new System.Drawing.Size(94, 58);
             this.btnBaoloi.TabIndex = 80;
-            this.btnBaoloi.Text = "Báo lỗi";
+            this.btnBaoloi.Text = "Bảo trì";
             this.btnBaoloi.UseVisualStyleBackColor = true;
             this.btnBaoloi.Click += new System.EventHandler(this.btnBaoloi_Click);
             // 
@@ -340,11 +340,11 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label8.Location = new System.Drawing.Point(12, 566);
+            this.label8.Location = new System.Drawing.Point(5, 566);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(142, 20);
+            this.label8.Size = new System.Drawing.Size(146, 20);
             this.label8.TabIndex = 72;
-            this.label8.Text = "Tổng chi phí bảo trì";
+            this.label8.Text = "Tổng chi phí bảo trì:";
             // 
             // txtTotal
             // 
@@ -396,7 +396,7 @@
             // gbZone
             // 
             this.gbZone.Controls.Add(this.panel3);
-            this.gbZone.Controls.Add(this.flpRoom);
+            this.gbZone.Controls.Add(this.flpCom);
             this.gbZone.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbZone.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.gbZone.Location = new System.Drawing.Point(4, 31);
@@ -432,7 +432,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.FlowLayoutPanel flpRoom;
+        private System.Windows.Forms.FlowLayoutPanel flpCom;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtError;
         private System.Windows.Forms.TextBox txtUsing;

@@ -1,4 +1,4 @@
-﻿namespace QLquannet.FoodModel
+﻿namespace KaraokeManagement.FoodModel
 {
     partial class frmAddFood
     {
@@ -64,7 +64,7 @@
             // 
             this.button5.FlatAppearance.BorderSize = 0;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Image = global::QLquannet.Properties.Resources.close__1_;
+            this.button5.Image = global::KaraokeManagement.Properties.Resources.close__1_;
             this.button5.Location = new System.Drawing.Point(437, 3);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(30, 30);

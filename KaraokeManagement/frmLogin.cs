@@ -4,7 +4,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace QLquannet
+namespace KaraokeManagement
 {
     public partial class frmLogin : Form
     {
@@ -50,6 +50,9 @@ namespace QLquannet
             Application.Exit();
         }
 
-
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

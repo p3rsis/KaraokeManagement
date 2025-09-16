@@ -21,7 +21,7 @@ namespace DAL
                 return FoodDAL.instance;
             }
             private set { FoodDAL.instance = value; }
-        } 
+        }
 
         private FoodDAL() { }
         public DataTable GetFoods(int categoryId)

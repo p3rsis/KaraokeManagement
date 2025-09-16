@@ -23,10 +23,10 @@ namespace DAL
 
         private MaintainanceDAL() { }
 
-        public void StartMaintainance(byte roomId)
+        public void StartMaintainance(byte comId)
         {
             Database.Instance.ExecuteNonQuery("ProcBillingINIT @Billingtype", new object[] { 0 });
-            Database.Instance.ExecuteNonQuery("ProcMaintainanceINIT @RoomID ", new object[] { roomId });
+            Database.Instance.ExecuteNonQuery("ProcMaintainanceINIT @ComputerID ", new object[] { comId });
 
         }
         public void AddMaintainanceDetail(int maintainid, string component, string mota)
@@ -35,10 +35,10 @@ namespace DAL
 
         }
 
-        public List<Maintainance> GetListMaintainance(byte roomid)
+        public List<Maintainance> GetListMaintainance(byte comid)
         {
             List<Maintainance> mlist = new List<Maintainance>();
-            string query = "SELECT m.billingid, md.ComponentName, md.Description, m.maintainanceid FROM Maintainance m JOIN MaintainanceDetail md ON m.MaintainanceID = md.MaintainanceID WHERE m.cost is null and m.RoomID = " + roomid;
+            string query = "SELECT m.billingid, md.ComponentName, md.Description, m.maintainanceid FROM Maintainance m JOIN MaintainanceDetail md ON m.MaintainanceID = md.MaintainanceID WHERE m.cost is null and m.ComputerID = " + comid;
             DataTable dt = Database.Instance.ExecuteQuery(query);
 
             foreach (DataRow dr in dt.Rows)
@@ -61,9 +61,9 @@ namespace DAL
             }
         }
 
-        public int GetUnCheckOutMaintainance(byte roomid)
+        public int GetUnCheckOutMaintainance(byte comid)
         {
-            DataTable dt = Database.Instance.ExecuteQuery("GetUnCheckOutMaintainance @roomid", new object[] { roomid });
+            DataTable dt = Database.Instance.ExecuteQuery("GetUnCheckOutMaintainance @comid", new object[] { comid });
             if (dt.Rows.Count > 0)
             {
                 Maintainance m = new Maintainance(dt.Rows[0]);

@@ -36,26 +36,45 @@ namespace DAL
             return bl;
         }
 
+        public List<Billing> loadBillListDashboard(DateTime ngaybd, DateTime ngaykt)
+        {
+            List<Billing> bl = new List<Billing>();
+            string query = "GetBillByDate @ngaybd , @ngaykt";
+            DataTable dt = Database.Instance.ExecuteQuery(query, new object[] { ngaybd, ngaykt });
+            foreach (DataRow dr in dt.Rows)
+            {
+                // Chỉ thêm hóa đơn có BType = 1 (Thu)
+                if (Convert.ToByte(dr["billingtype"]) == 1)
+                {
+                    Billing hd = new Billing(dr);
+                    bl.Add(hd);
+                }
+            }
+            return bl;
+        }
+
         public void CheckOut(int billid, byte emid)
         {
             string query = string.Format("ProcCheckOut @billingid , @employeeid");
             Database.Instance.ExecuteNonQuery(query, new object[] { billid, emid });
         }
 
-        public void CheckOutMaintainance(int billid, byte emid, decimal cost, byte roomid)
+        public void CheckOutMaintainance(int billid, byte emid, decimal cost, byte comid)
         {
             string nonquery = string.Format("UPDATE Maintainance SET Cost = {0} WHERE billingid = {1}", cost, billid);
             Database.Instance.ExecuteNonQuery(nonquery);
             string query = string.Format("ProcCheckOut @billingid , @employeeid");
             Database.Instance.ExecuteNonQuery(query, new object[] { billid, emid });
-            Database.Instance.ExecuteNonQuery("ProcRoomStatus @roomID , 0", new object[] { roomid });
+            Database.Instance.ExecuteNonQuery("ProcComputerStatus @computerID , 0", new object[] { comid });
         }
         public int GetMaxBillingID()
         {
-            try{
+            try
+            {
                 return (int)Database.Instance.ExecuteScalar("Select max(billingid) from billing");
             }
-            catch{
+            catch
+            {
                 return 1;
             }
         }
@@ -64,7 +83,7 @@ namespace DAL
             Database.Instance.ExecuteNonQuery("Exec ProcBillingINIT 0");
             int billid = GetMaxBillingID();
             Database.Instance.ExecuteNonQuery($"Insert into FoodDetail(Billingid, foodid, count) values ({billid},{foodId}, {count})");
-            Database.Instance.ExecuteNonQuery("Exec ProcCheckOut @billingid , @employeeid", new object[] {billid, Employee.emId});
+            Database.Instance.ExecuteNonQuery("Exec ProcCheckOut @billingid , @employeeid", new object[] { billid, Employee.emId });
         }
     }
 }

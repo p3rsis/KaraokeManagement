@@ -2,7 +2,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace QLquannet.Model
+namespace KaraokeManagement.Model
 {
     public partial class frmAddCategory : Form
     {

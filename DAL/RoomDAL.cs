@@ -6,43 +6,43 @@ using System.Text;
 
 namespace DAL
 {
-    public class RoomDAL
+    public class ComputerDAL
     {
-        private static RoomDAL instance;
+        private static ComputerDAL instance;
 
-        public static RoomDAL Instance
+        public static ComputerDAL Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new RoomDAL();
+                    instance = new ComputerDAL();
                 }
-                return RoomDAL.instance;
+                return ComputerDAL.instance;
             }
-            private set { RoomDAL.instance = value; }
+            private set { ComputerDAL.instance = value; }
         }
 
-        public static int RoomWidth = 83;
-        public static int RoomHeight = 83;
+        public static int ComWidth = 83;
+        public static int ComHeight = 83;
 
-        private RoomDAL() { }
+        private ComputerDAL() { }
 
-        public List<Room> LoadFullRoom()
+        public List<Computer> LoadFullCom()
         {
-            List<Room> room = new List<Room>();
-            DataTable dt = Database.Instance.ExecuteQuery("select roomid, roomname, roomstatus from room");
+            List<Computer> com = new List<Computer>();
+            DataTable dt = Database.Instance.ExecuteQuery("select computerid, computername, computerstatus from computer");
             foreach (DataRow dr in dt.Rows)
             {
-                Room ban = new Room(dr);
-                room.Add(ban);
+                Computer ban = new Computer(dr);
+                com.Add(ban);
             }
-            return room;
+            return com;
         }
 
-        public DataTable GetRooms(byte zoneid)
+        public DataTable GetComs(byte zoneid)
         {
-            return Database.Instance.ExecuteQuery($"Select roomid, roomname from Room where zoneid = {zoneid}");
+            return Database.Instance.ExecuteQuery($"Select computerid, computername from Computer where zoneid = {zoneid}");
         }
     }
 }

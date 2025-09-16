@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL
-{ 
+{
     public class CategoryDAL
     {
         private static CategoryDAL instance;

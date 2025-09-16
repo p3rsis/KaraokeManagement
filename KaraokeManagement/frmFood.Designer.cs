@@ -1,4 +1,4 @@
-﻿namespace QLquannet
+﻿namespace KaraokeManagement
 {
     partial class frmFood
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cboRoom = new System.Windows.Forms.ComboBox();
+            this.cboCom = new System.Windows.Forms.ComboBox();
             this.cboZone = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,14 +46,14 @@
             this.CategoryPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.ProductPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.dgvFoodList = new System.Windows.Forms.DataGridView();
+            this.txtSearchFood = new System.Windows.Forms.TextBox();
+            this.btnAddCategory = new System.Windows.Forms.Button();
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FoodName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtSearchFood = new System.Windows.Forms.TextBox();
-            this.btnAddCategory = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFoodList)).BeginInit();
@@ -62,7 +62,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
-            this.panel1.Controls.Add(this.cboRoom);
+            this.panel1.Controls.Add(this.cboCom);
             this.panel1.Controls.Add(this.cboZone);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label1);
@@ -77,21 +77,21 @@
             this.panel1.Size = new System.Drawing.Size(1065, 85);
             this.panel1.TabIndex = 0;
             // 
-            // cboRoom
+            // cboCom
             // 
-            this.cboRoom.FormattingEnabled = true;
-            this.cboRoom.Location = new System.Drawing.Point(952, 32);
-            this.cboRoom.Name = "cboRoom";
-            this.cboRoom.Size = new System.Drawing.Size(101, 21);
-            this.cboRoom.TabIndex = 9;
-            this.cboRoom.SelectedIndexChanged += new System.EventHandler(this.cboRoom_SelectedIndexChanged);
+            this.cboCom.FormattingEnabled = true;
+            this.cboCom.Location = new System.Drawing.Point(961, 32);
+            this.cboCom.Name = "cboCom";
+            this.cboCom.Size = new System.Drawing.Size(101, 21);
+            this.cboCom.TabIndex = 9;
+            this.cboCom.SelectedIndexChanged += new System.EventHandler(this.cboCom_SelectedIndexChanged);
             // 
             // cboZone
             // 
             this.cboZone.FormattingEnabled = true;
-            this.cboZone.Location = new System.Drawing.Point(741, 32);
+            this.cboZone.Location = new System.Drawing.Point(717, 32);
             this.cboZone.Name = "cboZone";
-            this.cboZone.Size = new System.Drawing.Size(101, 21);
+            this.cboZone.Size = new System.Drawing.Size(123, 21);
             this.cboZone.TabIndex = 8;
             this.cboZone.SelectedIndexChanged += new System.EventHandler(this.cboZone_SelectedIndexChanged);
             // 
@@ -102,9 +102,9 @@
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(860, 33);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 20);
+            this.label4.Size = new System.Drawing.Size(96, 20);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Chọn máy";
+            this.label4.Text = "Chọn phòng";
             // 
             // label1
             // 
@@ -113,9 +113,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(636, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 20);
+            this.label1.Size = new System.Drawing.Size(75, 20);
             this.label1.TabIndex = 6;
-            this.label1.Text = "Chọn Zone";
+            this.label1.Text = "Chọn loại";
             // 
             // lbStaff
             // 
@@ -190,7 +190,7 @@
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(91, 52);
             this.btnReset.TabIndex = 4;
-            this.btnReset.Text = "Reset";
+            this.btnReset.Text = "Làm mới";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
@@ -271,6 +271,28 @@
             this.dgvFoodList.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFoodList_CellValueChanged);
             this.dgvFoodList.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvFoodList_RowsAdded);
             // 
+            // txtSearchFood
+            // 
+            this.txtSearchFood.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchFood.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtSearchFood.Location = new System.Drawing.Point(111, 101);
+            this.txtSearchFood.Name = "txtSearchFood";
+            this.txtSearchFood.Size = new System.Drawing.Size(246, 26);
+            this.txtSearchFood.TabIndex = 5;
+            this.txtSearchFood.Text = "Tìm kiếm";
+            this.txtSearchFood.Click += new System.EventHandler(this.txtSearchFood_Click);
+            this.txtSearchFood.TextChanged += new System.EventHandler(this.txtSearchFood_TextChanged);
+            // 
+            // btnAddCategory
+            // 
+            this.btnAddCategory.Location = new System.Drawing.Point(12, 511);
+            this.btnAddCategory.Name = "btnAddCategory";
+            this.btnAddCategory.Size = new System.Drawing.Size(83, 21);
+            this.btnAddCategory.TabIndex = 6;
+            this.btnAddCategory.Text = "Thêm";
+            this.btnAddCategory.UseVisualStyleBackColor = true;
+            this.btnAddCategory.Click += new System.EventHandler(this.btnAddCategory_Click);
+            // 
             // No
             // 
             this.No.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
@@ -318,32 +340,10 @@
             // Amount
             // 
             this.Amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Amount.HeaderText = "Thành tiên";
+            this.Amount.HeaderText = "Thành tiền";
             this.Amount.MinimumWidth = 100;
             this.Amount.Name = "Amount";
             this.Amount.ReadOnly = true;
-            // 
-            // txtSearchFood
-            // 
-            this.txtSearchFood.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchFood.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.txtSearchFood.Location = new System.Drawing.Point(111, 101);
-            this.txtSearchFood.Name = "txtSearchFood";
-            this.txtSearchFood.Size = new System.Drawing.Size(246, 26);
-            this.txtSearchFood.TabIndex = 5;
-            this.txtSearchFood.Text = "Tìm kiếm";
-            this.txtSearchFood.Click += new System.EventHandler(this.txtSearchFood_Click);
-            this.txtSearchFood.TextChanged += new System.EventHandler(this.txtSearchFood_TextChanged);
-            // 
-            // btnAddCategory
-            // 
-            this.btnAddCategory.Location = new System.Drawing.Point(12, 511);
-            this.btnAddCategory.Name = "btnAddCategory";
-            this.btnAddCategory.Size = new System.Drawing.Size(83, 21);
-            this.btnAddCategory.TabIndex = 6;
-            this.btnAddCategory.Text = "Thêm";
-            this.btnAddCategory.UseVisualStyleBackColor = true;
-            this.btnAddCategory.Click += new System.EventHandler(this.btnAddCategory_Click);
             // 
             // frmFood
             // 
@@ -390,7 +390,7 @@
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Label lbStaff;
         private System.Windows.Forms.Label lbCom;
-        private System.Windows.Forms.ComboBox cboRoom;
+        private System.Windows.Forms.ComboBox cboCom;
         private System.Windows.Forms.ComboBox cboZone;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;

@@ -22,16 +22,16 @@ namespace DAL
 
         private UsageSessionDAL() { }
 
-        public UsageSession GetUsageSessionDetails(byte roomid)
+        public UsageSession GetUsageSessionDetails(byte comid)
         {
-            DataTable dt = Database.Instance.ExecuteQuery("GetUsageSessionDetails @roomid", new object[] { roomid });
+            DataTable dt = Database.Instance.ExecuteQuery("GetUsageSessionDetails @comid", new object[] { comid });
             DataRow row = dt.Rows[0];
             return new UsageSession(row);
 
         }
-        public int GetUnCheckOutSession(byte roomid)
+        public int GetUnCheckOutSession(byte comid)
         {
-            DataTable dt = Database.Instance.ExecuteQuery("GetUnCheckOutSession @roomid", new object[] { roomid });
+            DataTable dt = Database.Instance.ExecuteQuery("GetUnCheckOutSession @comid", new object[] { comid });
             if (dt.Rows.Count > 0)
             {
                 UsageSession us = new UsageSession(dt.Rows[0]);
@@ -39,10 +39,10 @@ namespace DAL
             }
             return -1;
         }
-        public void StartSession(byte roomId)
+        public void StartSession(byte comId)
         {
             Database.Instance.ExecuteNonQuery("ProcBillingINIT @Billingtype", new object[] { 1 });
-            Database.Instance.ExecuteNonQuery("ProcUsageSessionINIT @RoomID", new object[] { roomId });
+            Database.Instance.ExecuteNonQuery("ProcUsageSessionINIT @ComputerID", new object[] { comId });
 
         }
         public void EndSesion(int billid)

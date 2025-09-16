@@ -5,7 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace QLquannet.FoodModel
+namespace KaraokeManagement.FoodModel
 {
 
     public partial class frmEditFood : Form

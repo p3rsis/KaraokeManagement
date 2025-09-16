@@ -13,7 +13,7 @@ namespace DAL
             {
                 image.Save(ms, image.RawFormat);
                 return ms.ToArray();
-            } 
+            }
         }
         public static Image ByteArrayToImage(byte[] imageBytes)
         {

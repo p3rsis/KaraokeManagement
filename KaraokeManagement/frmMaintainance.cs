@@ -5,17 +5,17 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace QLquannet
+namespace KaraokeManagement
 {
     public partial class frmMaintainance : Form
     {
         byte cid;
         int bid;
-        string[] baotri = { "Bàn", "Loa", "Micro", "Tivi", "Ghế Sofa" };
+        string[] baotri = { "Micro", "Màn hình", "Amply", "Loa", "Ghế", "Điều hòa", "Bàn", "Khác" };
         public frmMaintainance()
         {
             InitializeComponent();
-            LoadRoom();
+            LoadCom();
             txtNhanvien.Text = Employee.fullName;
             cbBaotri.DataSource = baotri;
             txtTotal.KeyPress += new KeyPressEventHandler(txtTotal_KeyPress);
@@ -25,13 +25,13 @@ namespace QLquannet
         private void btn_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            Room room = btn.Tag as Room;
-            cid = room.RoomId;
-            if (room.RoomStatus == 0)
+            Computer com = btn.Tag as Computer;
+            cid = com.ComId;
+            if (com.ComStatus == 0)
             {
                 txtTT.Text = "Offline";
             }
-            else if (room.RoomStatus == 1)
+            else if (com.ComStatus == 1)
             {
                 txtTT.Text = "Online";
             }
@@ -39,20 +39,20 @@ namespace QLquannet
             {
                 txtTT.Text = "Error";
             }
-            gbMay.Text = room.RoomName;
+            gbMay.Text = com.ComName;
             LoadMaintainanceDetail(cid);
-            ChangeColorRoomBtn(btn, null);
+            ChangeColorComBtn(btn, null);
             ResetValue();
         }
         private void btnThanhtoan_Click(object sender, EventArgs e)
         {
             if (txtTT.Text == "Online" || txtTT.Text == "Offline")
             {
-                MessageBox.Show("Máy này không bảo trì!");
+                MessageBox.Show("Phòng này không bảo trì!");
             }
             else if (gbMay.Text == "")
             {
-                MessageBox.Show("Chưa chọn máy!");
+                MessageBox.Show("Chưa chọn phòng!");
             }
             else if (txtTotal.Text == "")
             {
@@ -61,7 +61,7 @@ namespace QLquannet
             else
             {
                 BillingDAL.Instance.CheckOutMaintainance(bid, Employee.emId, Convert.ToDecimal(txtTotal.Text), cid);
-                LoadRoom();
+                LoadCom();
                 LoadMaintainanceDetail(cid);
                 ResetValue();
             }
@@ -71,11 +71,11 @@ namespace QLquannet
         {
             if (txtTT.Text == "Online")
             {
-                MessageBox.Show("Máy đang online!");
+                MessageBox.Show("Khách đang dùng phòng này!");
             }
             else if (gbMay.Text == "")
             {
-                MessageBox.Show("Chưa chọn máy!");
+                MessageBox.Show("Chưa chọn phòng!");
             }
             else if (cbBaotri.Text == "")
             {
@@ -93,7 +93,7 @@ namespace QLquannet
                     MaintainanceDAL.Instance.AddMaintainanceDetail(MaintainanceDAL.Instance.GetUnCheckOutMaintainance(cid), cbBaotri.Text, txtDetail.Text);
 
                 }
-                LoadRoom();
+                LoadCom();
                 LoadMaintainanceDetail(cid);
                 ResetValue();
             }
@@ -108,50 +108,50 @@ namespace QLquannet
         #endregion
 
         #region Methods
-        void LoadRoom()
+        void LoadCom()
         {
-            flpRoom.Controls.Clear();
-            List<Room> listRoom = RoomDAL.Instance.LoadFullRoom();
+            flpCom.Controls.Clear();
+            List<Computer> listCom = ComputerDAL.Instance.LoadFullCom();
             int online = 0;
             int offline = 0;
             int error = 0;
-            foreach (Room room in listRoom)
+            foreach (Computer com in listCom)
             {
                 Button btn = new Button()
                 {
-                    Width = RoomDAL.RoomWidth,
-                    Height = RoomDAL.RoomHeight,
+                    Width = ComputerDAL.ComWidth,
+                    Height = ComputerDAL.ComHeight,
                 };
 
                 btn.Click += btn_Click;
 
                 btn.FlatStyle = FlatStyle.Flat;
 
-                btn.Tag = room;
+                btn.Tag = com;
 
-                switch (room.RoomStatus)
+                switch (com.ComStatus)
                 {
                     case 0:
                         btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(200, 200, 100);
                         btn.BackColor = Color.LightGray;
-                        btn.Text = room.RoomName + Environment.NewLine + "Offline";
+                        btn.Text = com.ComName + Environment.NewLine + "Offline";
                         offline++;
                         break;
 
                     case 1:
                         btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(100, 228, 178);
                         btn.BackColor = Color.Aqua;
-                        btn.Text = room.RoomName + Environment.NewLine + "Online";
+                        btn.Text = com.ComName + Environment.NewLine + "Online";
                         online++;
                         break;
                     default:
                         btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(228, 135, 50);
                         btn.BackColor = Color.OrangeRed;
-                        btn.Text = room.RoomName + Environment.NewLine + "Error";
+                        btn.Text = com.ComName + Environment.NewLine + "Error";
                         error++;
                         break;
                 }
-                flpRoom.Controls.Add(btn);
+                flpCom.Controls.Add(btn);
                 txtAvailable.Text = offline.ToString();
                 txtUsing.Text = online.ToString();
                 txtError.Text = error.ToString();
@@ -159,9 +159,9 @@ namespace QLquannet
             }
         }
 
-        void ChangeColorRoomBtn(object sender, EventArgs e)
+        void ChangeColorComBtn(object sender, EventArgs e)
         {
-            foreach (Control c in flpRoom.Controls)
+            foreach (Control c in flpCom.Controls)
             {
                 if (c.Text.Contains("Online"))
                 {
@@ -192,10 +192,10 @@ namespace QLquannet
             }
         }
 
-        void LoadMaintainanceDetail(byte roomid)
+        void LoadMaintainanceDetail(byte comid)
         {
             lvMaintain.Items.Clear();
-            List<Maintainance> ml = MaintainanceDAL.Instance.GetListMaintainance(roomid);
+            List<Maintainance> ml = MaintainanceDAL.Instance.GetListMaintainance(comid);
             foreach (Maintainance m in ml)
             {
                 ListViewItem lvi = new ListViewItem(m.Component.ToString());

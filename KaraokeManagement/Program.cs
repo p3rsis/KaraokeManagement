@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace QLquannet
+namespace KaraokeManagement
 {
     internal static class Program
     {

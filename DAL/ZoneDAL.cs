@@ -24,19 +24,19 @@ namespace DAL
 
         private ZoneDAL() { }
 
-        public static int RoomWidth = 150;
-        public static int RoomHeight = 100;
+        public static int ComWidth = 150;
+        public static int ComHeight = 100;
 
 
-        public List<Zone> loadRoom(byte zoneid)
+        public List<Zone> loadCom(byte zoneid)
         {
             List<Zone> lc = new List<Zone>();
-            string query = "GetRoomDetailsByZone @zoneid";
+            string query = "GetComputerDetailsByZone @zoneid";
             DataTable dt = Database.Instance.ExecuteQuery(query, new object[] { zoneid });
             foreach (DataRow dr in dt.Rows)
             {
-                Zone room = new Zone(dr);
-                lc.Add(room);
+                Zone com = new Zone(dr);
+                lc.Add(com);
             }
             return lc;
         }
@@ -45,6 +45,5 @@ namespace DAL
         {
             return Database.Instance.ExecuteQuery("Select ZoneID, ZoneName from Zone");
         }
-
     }
 }

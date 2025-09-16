@@ -4,7 +4,7 @@ using System.Data;
 using System.Windows.Forms;
 using COMExcel = Microsoft.Office.Interop.Excel;
 
-namespace QLquannet.Model
+namespace KaraokeManagement.Model
 {
     public partial class frmPrintRecipe : Form
     {
@@ -71,15 +71,15 @@ namespace QLquannet.Model
             exRange.Range["B1:B1"].ColumnWidth = 15;
             exRange.Range["A1:B1"].MergeCells = true;
             exRange.Range["A1:B1"].HorizontalAlignment = COMExcel.XlHAlign.xlHAlignCenter;
-            exRange.Range["A1:B1"].Value = "6MA Cyber";
+            exRange.Range["A1:B1"].Value = "KMP Kara";
 
             exRange.Range["A2:B2"].MergeCells = true;
             exRange.Range["A2:B2"].HorizontalAlignment = COMExcel.XlHAlign.xlHAlignCenter;
-            exRange.Range["A2:B2"].Value = "Đống Đa - Hà Nội";
+            exRange.Range["A2:B2"].Value = "Tân Bình - TP. Hồ Chí Minh";
 
             exRange.Range["A3:B3"].MergeCells = true;
             exRange.Range["A3:B3"].HorizontalAlignment = COMExcel.XlHAlign.xlHAlignCenter;
-            exRange.Range["A3:B3"].Value = "Điện thoại: 0338962222";
+            exRange.Range["A3:B3"].Value = "Điện thoại: 0123456789";
 
             exRange.Range["C2:E2"].Font.Size = 16;
             exRange.Range["C2:E2"].Font.Name = "Times new roman";
@@ -110,8 +110,8 @@ namespace QLquannet.Model
             exRange.Range["B10:F11"].HorizontalAlignment = COMExcel.XlHAlign.xlHAlignCenter;
             exRange.Range["B10:F11"].Borders.LineStyle = COMExcel.XlLineStyle.xlContinuous;
             exRange.Range["C10:F10"].ColumnWidth = 12;
-            exRange.Range["B10:B10"].Value = "Mã máy tính";
-            exRange.Range["C10:C10"].Value = "Zone";
+            exRange.Range["B10:B10"].Value = "Mã phòng";
+            exRange.Range["C10:C10"].Value = "Loại phòng";
             exRange.Range["D10:D10"].Value = "Đơn giá/ h";
             exRange.Range["E10:E10"].Value = "Thời gian";
             exRange.Range["F10:F10"].Value = "Thành tiền";
